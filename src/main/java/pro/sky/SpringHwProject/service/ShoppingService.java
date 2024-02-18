@@ -4,24 +4,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 import pro.sky.SpringHwProject.model.ShoppingBasket;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 @SessionScope
 public class ShoppingService {
-    private final List<ShoppingBasket> products = new ArrayList<>();
 
+    Set<Integer> item = new HashSet<>();
 
-    public void changeProduct(List<Integer> id) {
-        id.stream()
-                .map(c -> new ShoppingBasket("cucumber", 100.00, 1, c))
-                .forEach(sb -> products.add(sb));
+    public void changeProduct(Set<Integer> id) {
+        for (Integer i : id) {
+            item.add(i);
+        }
     }
 
-    public List<ShoppingBasket> printID() {
-
-        return Collections.unmodifiableList(products);
+    public Set<Integer> printID() {
+        return Collections.unmodifiableSet(item);
     }
 }
