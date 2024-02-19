@@ -1,18 +1,21 @@
 package pro.sky.SpringHwProject.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 
+import java.util.*;
+
+@Component
+@SessionScope
 public class ShoppingBasket {
 
-    private final int id;
+    private final Set<Integer> item = new HashSet<>();
 
-    public ShoppingBasket(int id) {
-        this.id = id;
+    public void add(Integer...id) {
+        item.addAll(Arrays.asList(id));
     }
 
-    public int getId() {
-        return id;
+    public Collection<Integer> get() {
+        return Collections.unmodifiableSet(item);
     }
-
 }
