@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pro.sky.SpringHwProject.model.ShoppingBasket;
 import pro.sky.SpringHwProject.service.ShoppingService;
 
+import java.util.Collection;
 import java.util.Set;
 
 @RestController
@@ -20,12 +21,12 @@ public class ShoppingController {
     }
 
     @GetMapping(path = "/add")
-    public void printProduct(@RequestParam("id") Set<Integer> id) {
+    public void printProduct(@RequestParam("id") Integer[] id) {
         shoppingService.changeProduct(id);
     }
 
     @GetMapping(path = "/get")
-    public Set<Integer> print() {
+    public Collection<Integer> print() {
         return shoppingService.printID();
     }
 }
